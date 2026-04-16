@@ -1,0 +1,13 @@
+---
+title: "Ariel Yuan"
+image: "files/profile_pic.jpeg"
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      href: mailto:shuhao.zhang95@gmail.com
+    - icon: linkedin
+      href: https://www.linkedin.com/in/ariel-yuan-b31028257/
+---
+
+Hi, I'm Ariel Yuan. Welcome to my website!
