@@ -5,7 +5,7 @@ about:
   template: jolla
   links:
     - icon: envelope
-      href: mailto:shuhao.zhang95@gmail.com
+      href: mailto:xiy086@ucsd.edu
     - icon: linkedin
       href: https://www.linkedin.com/in/ariel-yuan-b31028257/
 ---
