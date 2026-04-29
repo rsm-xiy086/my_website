@@ -184,7 +184,7 @@ The coefficient in column 1 is 0.0042, matching the paper's reported value of 0.
 Columns 3 and 5 show that the treatment effect is larger for donors who had *not* yet given in 2005 (0.0054) compared to those who already had (0.0031), suggesting that the match is somewhat more effective at reactivating lapsed donors. These estimates and sample sizes match the paper closely.
 
 
-## Something Additional
+## Additional Analysis
 
 ### Visualizing Treatment Effects
 
@@ -236,4 +236,4 @@ This means we can interpret the difference in donation rates between the treatme
 
 This replication confirms the central findings of Karlan and List (2007). Matching grants increase the probability of giving and raise average dollars per solicitation. However, the magnitude of the match ratio has no additional effect --- a result that challenges conventional fundraising wisdom.
 
-Overall, this replication successfully reproduces the paper's key empirical findings and illustrates why randomized assignment allows a credible causal interpretation.
+Overall, this replication successfully reproduces the paper's key empirical findings and illustrates why randomized assignment allows a credible causal interpretation. From a practical perspective, this suggests that organizations can increase donations through matching offers without needing overly generous match ratios, making such strategies more cost-effective.
