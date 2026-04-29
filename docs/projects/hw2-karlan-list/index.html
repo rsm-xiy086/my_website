@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
 <p>The dataset contains 50,083 observations, each representing a prior donor who received a solicitation letter.</p>
-<div id="77b6c899" class="cell" data-execution_count="2">
+<div id="9cbc70d1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_stata(<span class="st">"AERtables1-5.dta"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'treatment'</span>].notna()]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -241,7 +241,7 @@ Control group:      16,687</code></pre>
 <section id="balance-check-table-1" class="level3">
 <h3 class="anchored" data-anchor-id="balance-check-table-1">Balance Check (Table 1)</h3>
 <p>A well-designed randomized experiment should produce treatment and control groups that look similar on observable characteristics. Table 1 in the paper confirms this. I replicate the key rows below. I do not report formal t-tests here, but the descriptive balance is very close to the published table.</p>
-<div id="eba00cf2" class="cell" data-execution_count="3">
+<div id="ce64dc47" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>balance_vars <span class="op">=</span> {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'MRM2'</span>: <span class="st">'Months since last donation'</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'HPA'</span>: <span class="st">'Highest previous contribution'</span>,</span>
@@ -301,9 +301,9 @@ Control group:      16,687</code></pre>
 <th data-quarto-table-cell-role="th">0</th>
 <td>Months since last donation</td>
 <td>13.007</td>
-<td>(12.081)</td>
+<td>(12.080)</td>
 <td>13.012</td>
-<td>(12.086)</td>
+<td>(12.085)</td>
 <td>12.998</td>
 <td>(12.074)</td>
 </tr>
@@ -311,11 +311,11 @@ Control group:      16,687</code></pre>
 <th data-quarto-table-cell-role="th">1</th>
 <td>Highest previous contribution</td>
 <td>59.385</td>
-<td>(71.177)</td>
+<td>(71.181)</td>
 <td>59.597</td>
-<td>(73.052)</td>
+<td>(73.063)</td>
 <td>58.960</td>
-<td>(67.269)</td>
+<td>(67.271)</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
@@ -341,9 +341,9 @@ Control group:      16,687</code></pre>
 <th data-quarto-table-cell-role="th">4</th>
 <td>Donor activity flag (dormant)</td>
 <td>0.523</td>
-<td>(0.499)</td>
+<td>(0.500)</td>
 <td>0.524</td>
-<td>(0.499)</td>
+<td>(0.500)</td>
 <td>0.523</td>
 <td>(0.499)</td>
 </tr>
@@ -388,7 +388,7 @@ Control group:      16,687</code></pre>
 <section id="experimental-results-table-2a-panel-a" class="level3">
 <h3 class="anchored" data-anchor-id="experimental-results-table-2a-panel-a">Experimental Results (Table 2A, Panel A)</h3>
 <p>Table 2A presents the core experimental results. I compute three key outcome measures across the control group, the full treatment group, and the three match-ratio subgroups:</p>
-<div id="72aac69a" class="cell" data-execution_count="4">
+<div id="32991ec2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Control'</span>: df[df[<span class="st">'control'</span>] <span class="op">==</span> <span class="dv">1</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Treatment'</span>: df[df[<span class="st">'treatment'</span>] <span class="op">==</span> <span class="dv">1</span>],</span>
@@ -486,7 +486,7 @@ Control group:      16,687</code></pre>
 <h3 class="anchored" data-anchor-id="regression-analysis-table-3">Regression Analysis (Table 3)</h3>
 <p>To formally test these patterns, I estimate linear probability models with the binary donation indicator (<code>gave</code>) as the dependent variable. The paper labels these as probit regressions, but the coefficients are consistent with OLS estimates, as noted in the assignment instructions.</p>
 <p>I replicate the main treatment-effect regressions for the full sample and for the 2005 donation-status subsamples using linear probability models. The estimated treatment effects closely match the magnitudes reported in Table 3.</p>
-<div id="f1eaf681" class="cell" data-execution_count="5">
+<div id="8820938c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column 1: Treatment effect on full sample</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'gave'</span>].values</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> sm.add_constant(df[[<span class="st">'treatment'</span>]].values)</span>
@@ -502,7 +502,7 @@ Control group:      16,687</code></pre>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>X5 <span class="op">=</span> sm.add_constant(not_gave[[<span class="st">'treatment'</span>]].values)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>m5 <span class="op">=</span> sm.OLS(not_gave[<span class="st">'gave'</span>].values, X5).fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c5f72a1a" class="cell" data-execution_count="6">
+<div id="8114e542" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -562,11 +562,11 @@ Control group:      16,687</code></pre>
 <section id="visualizing-treatment-effects" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-treatment-effects">Visualizing Treatment Effects</h3>
 <p>The paper presents all its results in tables. To make the key finding more visually intuitive, I plot the response rates and average gift amounts across the control and treatment subgroups:</p>
-<div id="edc3bf5c" class="cell" data-execution_count="7">
+<div id="25af6f5d" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-1.png" width="1047" height="470" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-8-output-1.png" width="1047" height="469" class="figure-img"></p>
 <figcaption>Donation Outcomes by Experimental Group</figcaption>
 </figure>
 </div>
