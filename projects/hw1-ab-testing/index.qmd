@@ -23,7 +23,9 @@ Imagine you run a website and your landing page includes a spot where visitors c
 - **CTA A:** *"Sign up for our newsletter here!"*
 - **CTA B:** *"Stay up to date by signing up!"*
 
-Which one performs better? Rather than relying on intuition, you decide to run an **A/B test** --- a simple randomized experiment in which each visitor to your site is randomly assigned to see one of the two CTAs. By comparing the sign-up rates between the two groups, you can make a data-driven decision about which wording is more effective.
+Which one performs better? Rather than relying on intuition, you decide to run an **A/B test** - a simple randomized experiment in which each visitor to your site is randomly assigned to see one of the two CTAs. By comparing the sign-up rates between the two groups, you can make a data-driven decision about which wording is more effective.
+
+In practice, A/B testing is widely used in digital platforms such as e-commerce websites and social media. Even small improvements in conversion rates can lead to significant business impact, which makes careful statistical analysis essential.
 
 Along the way, I use simulations to illustrate the Law of Large Numbers, the Central Limit Theorem, bootstrap uncertainty, hypothesis testing, the regression interpretation of difference-in-means, and the danger of peeking at experimental results too early.
 
@@ -59,7 +61,7 @@ pi_B = 0.18
 theta_true = pi_A - pi_B
 n = 1000
 
-# Simulate 1,000 draws from each Bernoulli distribution
+# Simulate 1,000 binary outcomes (1 = sign-up, 0 = no sign-up) from each Bernoulli distribution
 cta_a = np.random.binomial(1, pi_A, size=n)
 cta_b = np.random.binomial(1, pi_B, size=n)
 
@@ -98,7 +100,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-The plot illustrates the LLN nicely. With only a handful of visitors, the running difference bounces around erratically --- a few lucky or unlucky sign-ups can swing the estimate dramatically. But as the sample size grows, the estimate settles down and stabilizes near the true difference of 0.04. This is exactly why we need a large enough sample before drawing conclusions from an A/B test.
+The plot illustrates the Law of Large Numbers clearly. When the sample size is small, the estimate fluctuates significantly due to randomness. As more observations are collected, the estimate becomes more stable and converges toward the true difference of 0.04. This is exactly why we need a large enough sample before drawing conclusions from an A/B test.
 
 
 ## Bootstrap Standard Errors
@@ -138,7 +140,7 @@ print(f"Bootstrap SE:   {boot_se:.5f}")
 print(f"Analytical SE:  {analytical_se:.5f}")
 ```
 
-The two standard errors are very close, confirming that the bootstrap provides a reliable estimate of uncertainty even without relying on analytical formulas.
+The two standard errors are very close, confirming that the bootstrap provides a reliable estimate of uncertainty even without relying on analytical formulas. This also shows that the bootstrap method is especially useful in practice when analytical formulas are difficult to derive or unavailable.
 
 Using the bootstrap standard error, we construct a **95% confidence interval** for $\theta$:
 
@@ -204,7 +206,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-At small sample sizes (n = 25), the distribution of $\hat\theta$ is rough, chunky, and somewhat irregular --- the Bernoulli data can only produce a limited set of distinct sample proportions, so the histogram looks jagged and the Normal curve is a poor fit. As n increases, the histogram becomes progressively smoother and more bell-shaped, tracking the theoretical Normal overlay more closely. By n = 500, the distribution is nearly indistinguishable from the Normal curve. This is the CLT at work: it doesn't matter that our underlying data are binary (0s and 1s); with enough observations, the sampling distribution of the mean difference is well-approximated by a Gaussian.
+At small sample sizes (n = 25), the distribution of $\hat\theta$ is rough, chunky, and somewhat irregular --- the Bernoulli data can only produce a limited set of distinct sample proportions, so the histogram looks jagged and the Normal curve is a poor fit. As n increases, the histogram becomes progressively smoother and more bell-shaped, tracking the theoretical Normal overlay more closely. By n = 500, the distribution is nearly indistinguishable from the Normal curve. This is the CLT at work: it doesn't matter that our underlying data are binary (0s and 1s); with enough observations, the sampling distribution of the mean difference is well-approximated by a Gaussian. This is why large sample sizes are important in A/B testing, as they allow us to rely on Normal approximations for inference and make more reliable decisions.
 
 
 ## Hypothesis Testing
@@ -365,3 +367,10 @@ print(f"False positive rate, repeated peeking:  {peeking_fp / n_experiments:.3f}
 The result is striking. The single final test produces a false positive rate near the nominal 5%, as expected. But repeated peeking inflates it to roughly 15--20% --- meaning that in a world where there is truly no difference between the two CTAs, we would incorrectly declare a winner about one in every five or six experiments.
 
 This is why proper experimental design matters. If you want to peek at results during an experiment, you need to use methods specifically designed for sequential testing (such as group sequential designs or always-valid p-values) that control the overall Type I error rate across multiple looks. Simply running a standard hypothesis test at each checkpoint and stopping at the first significant result will fool you far more often than you might expect.
+
+
+## Practical Implications
+
+While the results suggest that one CTA may perform better than the other, it is important to distinguish between statistical significance and practical significance. A statistically significant result does not always imply that the effect is large enough to matter in a real business context.
+
+In real-world applications, decision-makers should also consider external factors such as user behavior changes, timing, and marketing strategies. Therefore, A/B testing results should be combined with business judgment before making final decisions.
